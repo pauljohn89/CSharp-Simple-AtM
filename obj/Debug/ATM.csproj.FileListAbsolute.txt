@@ -1,0 +1,7 @@
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\bin\Debug\ATM.exe.config
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\bin\Debug\ATM.exe
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\bin\Debug\ATM.pdb
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\obj\Debug\ATM.csprojAssemblyReference.cache
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\obj\Debug\ATM.csproj.CoreCompileInputs.cache
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\obj\Debug\ATM.exe
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\obj\Debug\ATM.pdb
