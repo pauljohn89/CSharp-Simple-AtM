@@ -5,3 +5,5 @@ C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\obj\Debug\ATM.csprojAssemblyRef
 C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\obj\Debug\ATM.csproj.CoreCompileInputs.cache
 C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\obj\Debug\ATM.exe
 C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\obj\Debug\ATM.pdb
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\bin\Debug\Atm.mdf
+C:\Users\Paul\Documents\GitHub\CSharp-Simple-AtM\bin\Debug\Atm_log.ldf

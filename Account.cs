@@ -8,10 +8,10 @@ namespace ATM
 {
     class Account
     {
-        private long AccountNumber { get; set; }
-        private int Pin { get; set; }
-        private double Balance { get; set; }
-        public Account(long accountNumber, int pin, double balance)
+        public int AccountNumber { get; }
+        public int Pin { get; set; }
+        public double Balance { get; set; }
+        public Account(int accountNumber, int pin, double balance)
         {
             AccountNumber = accountNumber;
             Pin = pin;
@@ -27,7 +27,19 @@ namespace ATM
         {
              Balance += amount;
         }
-
+        public void UpdatePin(int pin)
+        {
+            if(pin < 4 || pin > 4)
+            {
+                Console.WriteLine("Invalid pin. Please enter a 4 digit pin!");
+            }
+            else
+            {
+                Pin = pin;
+                Console.WriteLine("Pin updated successfully!");
+            }
+           
+        }
         public override string ToString()
         {
             return "Account: " + AccountNumber.ToString() + "\r\nBalance: " + Balance.ToString();
