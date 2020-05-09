@@ -101,33 +101,38 @@ namespace ATM
             {
                 type = "Deposit";
             }
-            else if(v.Equals("W"))
+            else if(v.Equals('W'))
             {
                 type = "Withdraw";
-                amount = amount * -1;
+                amount *= -1;
             }
 
             try
             {
                 SqlConnection Conn = new SqlConnection(Connection);
-                SqlCommand insertCMD = new SqlCommand("Insert into Transactions Values (" + user + "," + amount + ",'" + type + "'," + DateTime.Now + ")", Conn);
+                SqlCommand insertCMD = new SqlCommand("Insert into Transactions(account_id, amount, type, transaction_date) Values(@id, @amount, @type, @date)", Conn);
                 Conn.Open();
+                insertCMD.Parameters.AddWithValue("@id", user);
+                insertCMD.Parameters.AddWithValue("@amount", amount);
+                insertCMD.Parameters.AddWithValue("@type", type);
+                insertCMD.Parameters.AddWithValue("@date", DateTime.Now.ToString());
                 insertCMD.ExecuteNonQuery();
                 Conn.Close();
             }
             
             catch (SqlException  e)
             {
-                Console.WriteLine("Insert into Transactions Values (" + user + "," + amount + "," + type + "," + DateTime.Now + ")");
+                Console.WriteLine("Insert into Transactions Values (" + user + "," + amount + "," + type + "," + DateTime.Now + ")" + e);
             }
         }
 
         private static void PrintTransactions(int user)
         {
             SqlConnection Conn = new SqlConnection(Connection);
-            SqlCommand selectCMD = new SqlCommand("SELECT * FROM Transactions where id =" + user + " ", Conn);
+            SqlCommand selectCMD = new SqlCommand("SELECT * FROM Transactions where account_id = @user", Conn);
             selectCMD.CommandTimeout = 30;
             SqlDataAdapter userDA = new SqlDataAdapter();
+            selectCMD.Parameters.AddWithValue("@user", user);
             userDA.SelectCommand = selectCMD;
             Conn.Open();
             DataTable DT = new DataTable();
@@ -138,7 +143,7 @@ namespace ATM
             {
                 foreach (DataRow rows in DT.Rows)
                 {
-                    Console.WriteLine(String.Format("Type: , Amount: , Date: ", rows["type"].ToString(), Convert.ToDouble(rows["amount"]), Convert.ToDateTime(rows["transaction_date"])));
+                    Console.WriteLine(String.Format("Type: {0}, Amount: {1}, Date: {2}", rows["type"].ToString(), Convert.ToDouble(rows["amount"]), Convert.ToDateTime(rows["transaction_date"])));
                 }    
                 
             }
@@ -154,8 +159,11 @@ namespace ATM
         private static void UpdateServer(Account acc)
         {
             SqlConnection Conn = new SqlConnection(Connection);
-            SqlCommand updateCMD = new SqlCommand("Update [dbo].[Table] set balance = " + acc.Balance + ", pin = " +acc.Pin +" where account_id =" + acc.AccountNumber + " AND pin = " + acc.Pin + " ", Conn);
+            SqlCommand updateCMD = new SqlCommand("Update [dbo].[Table] set balance = @balance, pin = @pin where account_id = @id", Conn);
             Conn.Open();
+            updateCMD.Parameters.AddWithValue("@id", acc.AccountNumber);
+            updateCMD.Parameters.AddWithValue("@pin", acc.Pin);
+            updateCMD.Parameters.AddWithValue("@balance", acc.Balance);
             updateCMD.ExecuteNonQuery();
             Conn.Close();
         }
